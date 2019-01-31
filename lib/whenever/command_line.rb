@@ -85,10 +85,10 @@ module Whenever
         action = 'written' if @options[:write]
         action = 'updated' if @options[:update]
         puts "[write] crontab file #{action}"
-        exit(0)
+        # exit(0)
       else
         warn "[fail] Couldn't write crontab; try running `whenever' with no options to ensure your schedule file is valid."
-        exit(1)
+        # exit(1)
       end
     end
 
@@ -96,10 +96,10 @@ module Whenever
       # Check for unopened or unclosed identifier blocks
       if read_crontab =~ Regexp.new("^#{comment_open_regex}\s*$") && (read_crontab =~ Regexp.new("^#{comment_close_regex}\s*$")).nil?
         warn "[fail] Unclosed indentifier; Your crontab file contains '#{comment_open(false)}', but no '#{comment_close(false)}'"
-        exit(1)
+        # exit(1)
       elsif (read_crontab =~ Regexp.new("^#{comment_open_regex}\s*$")).nil? && read_crontab =~ Regexp.new("^#{comment_close_regex}\s*$")
         warn "[fail] Unopened indentifier; Your crontab file contains '#{comment_close(false)}', but no '#{comment_open(false)}'"
-        exit(1)
+        # exit(1)
       end
 
       # If an existing identifier block is found, replace it with the new cron entries
